@@ -1,0 +1,23 @@
+{
+  "protocol_version": 1,
+  "purpose": "Select exactly one UMLR endpoint using validation classes and episodes only, then compare the locked endpoint with ProtoNet and SimpleShot on disjoint test classes and newly sampled test episodes.",
+  "datasets": ["cifarfs", "cub", "fc100", "mini_imagenet", "tiered_imagenet"],
+  "backbone": "vit_b_16",
+  "pretrained": true,
+  "feature_mode": "cl2n",
+  "way": "full",
+  "shots": [1, 4, 16],
+  "query_per_class": 15,
+  "episodes_per_seed": 200,
+  "validation_seeds": [101, 102, 103, 104, 105],
+  "test_seeds": [1001, 1002, 1003, 1004, 1005],
+  "candidate_methods": ["adapt_h", "adapt_h2", "adapt_s", "adapt_s2"],
+  "selection_unit": "one global endpoint across all dataset-by-shot validation cells",
+  "selection_metric": "equal-cell mean validation accuracy; each cell is the mean over the validation seeds and 200 episodes per seed",
+  "tie_threshold_percentage_points": 0.1,
+  "tie_break_order": ["adapt_h", "adapt_s", "adapt_h2", "adapt_s2"],
+  "test_methods": ["protonet", "simpleshot_cl2n", "LOCKED_VALIDATION_SELECTED_METHOD"],
+  "adapt_steps": 100,
+  "adapt_lr": 0.01,
+  "test_access_rule": "The selected endpoint must be written to the selection manifest before any test-split run is launched."
+}

@@ -1,0 +1,16 @@
+# Core (install with: pip install -e .)
+torch>=2.1
+torchvision>=0.16
+numpy
+scipy
+tqdm
+requests
+Pillow
+# Few-shot episodic datasets (Experiment 3)
+datasets
+huggingface_hub
+# Figures
+matplotlib
+scikit-learn
+# Tests
+pytest

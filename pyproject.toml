@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "umlr"
+version = "1.0.0"
+description = "Umbilic Multinomial Logistic Regression: hyperplane and sphere class coordinates for classifier heads"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+authors = [
+  { name = "Zihan Su" },
+  { name = "Nicu Sebe" },
+  { name = "Bernhard Schölkopf" },
+  { name = "Ziheng Chen" },
+]
+dependencies = [
+  "torch>=2.1",
+  "torchvision>=0.16",
+  "numpy",
+  "scipy",
+  "tqdm",
+  "requests",
+  "Pillow",
+]
+
+[project.optional-dependencies]
+episodic = ["datasets", "huggingface_hub"]
+figures = ["matplotlib", "scikit-learn"]
+dev = ["pytest"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
