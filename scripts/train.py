@@ -103,6 +103,12 @@ def parse_args() -> argparse.Namespace:
     init.add_argument("--feature-stat-radius-quantile", type=float, default=0.8)
     init.add_argument("--feature-stat-radius-std-mult", type=float, default=1.0)
     init.add_argument("--feature-stat-max-batches", type=int)
+    init.add_argument(
+        "--feature-stat-centers-only",
+        action="store_true",
+        help="Initialize only the sphere centers from class means and keep the configured radius "
+        "(used for the zero-radius limit: --radius-scope fixed --fixed-radius 0).",
+    )
     init.add_argument("--feature-normalization", action="store_true", help="L2-normalize features before the head.")
     init.add_argument(
         "--feature-centering",
@@ -290,7 +296,8 @@ def apply_feature_stat_init(
 
     with torch.no_grad():
         sphere_head.set_centers_(centers)
-        sphere_head.set_radius_values_(radii)
+        if not args.feature_stat_centers_only:
+            sphere_head.set_radius_values_(radii)
         if sphere_head.alpha_values() is not None:
             hyper_weight = getattr(model.head, "hyper_weight", None)
             if hyper_weight is not None:

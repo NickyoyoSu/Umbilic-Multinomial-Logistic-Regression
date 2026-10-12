@@ -67,12 +67,14 @@ MATCHED_FINETUNE=("${MATCHED_BASE[@]}" --lr 1e-5 --head-lr-factor 100)
 
 # Head-swap and full-data suites.
 HEAD_H=(--head-type hyperplane)
-HEAD_PROTO=(--head-type prototype)
 HEAD_S=(--head-type sphere --sphere-parameterization ppt_decoupled_inside --sphere-boundary-mode distance
   --feature-stat-init centroid_radius --feature-stat-radius-mode quantile --feature-stat-radius-quantile 0.9)
 HEAD_S2=(--head-type sphere --sphere-parameterization ppt_decoupled_inside --sphere-boundary-mode signed_square
   --umlr-alpha-mode identity
   --feature-stat-init centroid_radius --feature-stat-radius-mode quantile --feature-stat-radius-quantile 0.9)
+# Zero-radius limit of UMLR^2-S (the prototype column of Table 4): same head,
+# class-mean centers, and recipe as HEAD_S2, with every radius fixed at zero.
+HEAD_S2_R0=("${HEAD_S2[@]}" --radius-scope fixed --fixed-radius 0 --feature-stat-centers-only)
 
 # Parameter-matched heads: K(d+2) trainable parameters each.
 MATCHED_H=(--head-type hyperplane --hyperplane-score-mode linear --hyperplane-alpha-scope classwise)

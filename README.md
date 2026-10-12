@@ -21,9 +21,10 @@ signed-square link, in one family:
 | UMLR²-S | α_k · sign(z) z², with z = r_k − ‖x − c_k‖ | `SphereUMLRHead(boundary_mode="signed_square")` |
 
 With r_k = 0 and α_k = 1, UMLR²-S is the squared-distance prototype
-score −‖x − c_k‖². The repository also contains the prototype,
-CosFace/ArcFace, and exploratory hyperplane–sphere mixed heads used as
-comparators in the paper.
+score −‖x − c_k‖². Because the family separates the class geometry, the score
+link, and the radius, it supports controlled comparisons of hyperplane and
+spherical heads. The repository also contains CosFace/ArcFace, a learned
+prototype head, and the exploratory hyperplane–sphere mixed heads.
 
 ## Installation
 
@@ -92,7 +93,7 @@ the dry-run output is an independent job and can be submitted to a cluster.
 
 | Paper | Script | Summary |
 |---|---|---|
-| Table 2 (Experiment 1), Table 4 (Experiment 2, prototype) | `experiments/exp1_head_swap.sh` | `reports/exp1_head_swap.md` |
+| Table 2 (Experiment 1), Table 4 (Experiment 2, UMLR²-S versus its zero-radius limit) | `experiments/exp1_head_swap.sh` | `reports/exp1_head_swap.md` |
 | Table 3 (parameter-matched shot curve) | `experiments/exp1_shot_curve.sh` | `reports/shot_curve/` |
 | Experiment 2, radius-only control | `experiments/exp2_radius_control.sh` | `reports/radius_control/` |
 | Table 5 (Experiment 3, validation-selected episodic) and the appendix four-endpoint table | `experiments/exp3_episodic.sh` (`FOUR_ENDPOINT_TEST=1`) | `reports/episodic_*.md` |
@@ -122,6 +123,11 @@ SEEDS=0 DATASETS=cifar100 BACKBONES=vit_b_16 RUN_FULL_DATA=0 bash experiments/ex
 - **Initialization.** Spherical heads start from class feature means and a
   within-class distance quantile (`--feature-stat-radius-quantile`, 0.9 in the
   head-swap suite and 0.8 in the parameter-matched recipe).
+- **Zero-radius limit.** The prototype column of Table 4 and the r = 0 arm of
+  the radius-only control use the same head with every radius fixed at zero
+  and the same class-mean centers (`--radius-scope fixed --fixed-radius 0
+  --feature-stat-centers-only`), so they differ from UMLR²-S only in the
+  radius.
 - **Recipes.** The recipes of every table are defined in
   `experiments/common.sh` (head-swap, full-data fine-tuning, mixed-head, and
   parameter-matched recipes).

@@ -2,7 +2,9 @@
 # Experiment 1 (Table 2) and Experiment 2 (Table 4).
 #
 # Low-shot rows: frozen CL2N features, 4/16 labeled images per class,
-#   UMLR-H, UMLR-S, UMLR^2-S, and the prototype head (Table 4 reuses these runs).
+#   UMLR-H, UMLR-S, and UMLR^2-S (Table 2), plus the zero-radius limit of
+#   UMLR^2-S (Table 4: UMLR^2-S with every radius fixed at zero, paired with the
+#   UMLR^2-S runs by seed).
 # Full-data rows: end-to-end fine-tuning of UMLR-H, UMLR-S, and UMLR^2-S.
 source "$(dirname "${BASH_SOURCE[0]}")/common.sh"
 
@@ -18,7 +20,7 @@ for dataset in ${DATASETS}; do
         train exp1_lowshot "${dataset}" "${backbone}" "${seed}" "${shots}" "${HEADSWAP_FROZEN[@]}" "${HEAD_H[@]}"
         train exp1_lowshot "${dataset}" "${backbone}" "${seed}" "${shots}" "${HEADSWAP_FROZEN[@]}" "${HEAD_S[@]}"
         train exp1_lowshot "${dataset}" "${backbone}" "${seed}" "${shots}" "${HEADSWAP_FROZEN[@]}" "${HEAD_S2[@]}"
-        train exp1_lowshot "${dataset}" "${backbone}" "${seed}" "${shots}" "${HEADSWAP_FROZEN[@]}" "${HEAD_PROTO[@]}"
+        train exp1_lowshot "${dataset}" "${backbone}" "${seed}" "${shots}" "${HEADSWAP_FROZEN[@]}" "${HEAD_S2_R0[@]}"
       done
       if [[ "${RUN_FULL_DATA}" == "1" ]]; then
         train exp1_full "${dataset}" "${backbone}" "${seed}" 0 "${FULL_FINETUNE[@]}" "${HEAD_H[@]}"
