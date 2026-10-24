@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# Experiment 1 (Table 2) and Experiment 2 (Table 4).
+# Experiment 1 (Table 4) and Experiment 2 (Table 6).
 #
 # Low-shot rows: frozen CL2N features, 4/16 labeled images per class,
-#   UMLR-H, UMLR-S, and UMLR^2-S (Table 2), plus the zero-radius limit of
-#   UMLR^2-S (Table 4: UMLR^2-S with every radius fixed at zero, paired with the
+#   UMLR-H, UMLR-S, and UMLR^2-S (Table 4), plus the zero-radius limit of
+#   UMLR^2-S (Table 6: UMLR^2-S with every radius fixed at zero, paired with the
 #   UMLR^2-S runs by seed).
 # Full-data rows: end-to-end fine-tuning of UMLR-H, UMLR-S, and UMLR^2-S.
 source "$(dirname "${BASH_SOURCE[0]}")/common.sh"

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Experiment 1, parameter-matched H/H^2/S/S^2 study across shots (Table 3).
+# Experiment 1, parameter-matched H/H^2/S/S^2 study across shots (Table 5).
 #
 # All four heads have K(d+2) trainable parameters; frozen CL2N features;
 # 1/2/4/8/16/32 labeled images per class; paired seeds across heads.

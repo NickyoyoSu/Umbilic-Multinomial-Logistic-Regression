@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Experiment 4 (Table 6): ImageNet-1K head retraining with angular-margin controls.
+# Experiment 4 (Table 8): ImageNet-1K head retraining with angular-margin controls.
 #
 # 1. Cache frozen ImageNet-1K-pretrained ViT-B/16 penultimate features of all
 #    training and validation images (multi-GPU: set NPROC_PER_NODE > 1).

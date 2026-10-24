@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Experiment 3 (Table 5): validation-selected UMLR endpoint on full-way episodes.
+# Experiment 3 (Table 7): validation-selected UMLR endpoint on full-way episodes.
 #
 # 1. Run the four adapted endpoints (UMLR-H, UMLR^2-H, UMLR-S, UMLR^2-S) on
 #    validation classes for every dataset, shot, and validation seed.

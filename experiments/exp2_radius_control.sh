@@ -3,7 +3,7 @@
 #
 # Same class-mean centers, link, scale, split, and optimizer; only the radius
 # changes: r = 0 (prototype limit), one shared radius, a fixed q80 radius, and a
-# learned q80 radius. The Table 4 comparison comes from exp1_head_swap.sh.
+# learned q80 radius. The Table 6 comparison comes from exp1_head_swap.sh.
 source "$(dirname "${BASH_SOURCE[0]}")/common.sh"
 
 DATASETS="${DATASETS:-cifar100 flowers102 tiny_imagenet}"

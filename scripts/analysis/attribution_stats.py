@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Paired statistics for the parameter-matched H/H^2/S/S^2 study and radius controls.
 
-``--study shot_curve`` (Table 3): for every shot count, the mean accuracy of
+``--study shot_curve`` (Table 5): for every shot count, the mean accuracy of
 each head over datasets, backbones, and seeds, and the paired effects S-H,
 S^2-H^2, H^2-H, S^2-S, and their interaction. Each effect reports the mean,
 a 95% hierarchical-bootstrap interval (resampling dataset-backbone cells, then
