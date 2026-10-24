@@ -47,16 +47,16 @@ COMMON=(
   --feature-centering train_mean
 )
 
-# Head-swap suite (Tables 2 and 4, low-shot rows): frozen backbone, 60 epochs.
+# Head-swap suite (Tables 4 and 6, low-shot rows): frozen backbone, 60 epochs.
 HEADSWAP_FROZEN=("${COMMON[@]}" --epochs 60 --lr 1e-3 --head-lr-factor 1.0 --weight-decay 1e-4 --warmup-epochs 3 --freeze-backbone)
 
-# Full-data suite (Table 2, full-data rows): end-to-end fine-tuning, 100 epochs.
+# Full-data suite (Table 4, full-data rows): end-to-end fine-tuning, 100 epochs.
 FULL_FINETUNE=("${COMMON[@]}" --epochs 100 --lr 5e-5 --head-lr-factor 10.0 --weight-decay 0.05 --warmup-epochs 5)
 
 # Mixed-head suite (appendix), low-shot rows: frozen backbone, 60 epochs.
 MIXED_FROZEN=("${COMMON[@]}" --epochs 60 --lr 1e-3 --head-lr-factor 1.0 --weight-decay 0.05 --warmup-epochs 5 --freeze-backbone)
 
-# Parameter-matched recipe (Table 3, radius controls, sensitivity, frozen-versus-
+# Parameter-matched recipe (Table 5, radius controls, sensitivity, frozen-versus-
 # fine-tuned, full-data and long-tail controls): every head has an explicit
 # classwise positive scale initialized at 1.
 MATCHED_BASE=("${COMMON[@]}" --epochs 60 --weight-decay 1e-4 --warmup-epochs 3 --radius-lr-factor 1.0 --alpha-init-effective 1.0)
@@ -72,7 +72,7 @@ HEAD_S=(--head-type sphere --sphere-parameterization ppt_decoupled_inside --sphe
 HEAD_S2=(--head-type sphere --sphere-parameterization ppt_decoupled_inside --sphere-boundary-mode signed_square
   --umlr-alpha-mode identity
   --feature-stat-init centroid_radius --feature-stat-radius-mode quantile --feature-stat-radius-quantile 0.9)
-# Zero-radius limit of UMLR^2-S (the prototype column of Table 4): same head,
+# Zero-radius limit of UMLR^2-S (the prototype column of Table 6): same head,
 # class-mean centers, and recipe as HEAD_S2, with every radius fixed at zero.
 HEAD_S2_R0=("${HEAD_S2[@]}" --radius-scope fixed --fixed-radius 0 --feature-stat-centers-only)
 

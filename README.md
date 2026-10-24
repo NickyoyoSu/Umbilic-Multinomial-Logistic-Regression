@@ -93,11 +93,11 @@ the dry-run output is an independent job and can be submitted to a cluster.
 
 | Paper | Script | Summary |
 |---|---|---|
-| Table 2 (Experiment 1), Table 4 (Experiment 2, UMLR²-S versus its zero-radius limit) | `experiments/exp1_head_swap.sh` | `reports/exp1_head_swap.md` |
-| Table 3 (parameter-matched shot curve) | `experiments/exp1_shot_curve.sh` | `reports/shot_curve/` |
+| Table 4 (Experiment 1), Table 6 (Experiment 2, UMLR²-S versus its zero-radius limit) | `experiments/exp1_head_swap.sh` | `reports/exp1_head_swap.md` |
+| Table 5 (parameter-matched shot curve) | `experiments/exp1_shot_curve.sh` | `reports/shot_curve/` |
 | Experiment 2, radius-only control | `experiments/exp2_radius_control.sh` | `reports/radius_control/` |
-| Table 5 (Experiment 3, validation-selected episodic) and the appendix four-endpoint table | `experiments/exp3_episodic.sh` (`FOUR_ENDPOINT_TEST=1`) | `reports/episodic_*.md` |
-| Table 6 (Experiment 4, ImageNet-1K) | `experiments/exp4_imagenet.sh` | `reports/imagenet.md` |
+| Table 7 (Experiment 3, validation-selected episodic) and the appendix four-endpoint table | `experiments/exp3_episodic.sh` (`FOUR_ENDPOINT_TEST=1`) | `reports/episodic_*.md` |
+| Table 8 (Experiment 4, ImageNet-1K) | `experiments/exp4_imagenet.sh` | `reports/imagenet.md` |
 | Appendix: radius and scale sensitivity, frozen vs. fine-tuned, full-data and long-tail controls, large-K benchmark | `experiments/appendix_controls.sh` | `reports/{sensitivity,frozen_vs_finetuned,full_longtail}.md`, `reports/large_k.json` |
 | Appendix: exploratory mixed heads and gate audit | `experiments/appendix_mixed.sh` | `reports/mixed*.md` |
 | Figures 1 and 2 | `scripts/figures/make_geometry_schematic.py`, `scripts/figures/sample_features.py` + `scripts/figures/plot_tsne_triptych.py` | `figures/` |
@@ -123,7 +123,7 @@ SEEDS=0 DATASETS=cifar100 BACKBONES=vit_b_16 RUN_FULL_DATA=0 bash experiments/ex
 - **Initialization.** Spherical heads start from class feature means and a
   within-class distance quantile (`--feature-stat-radius-quantile`, 0.9 in the
   head-swap suite and 0.8 in the parameter-matched recipe).
-- **Zero-radius limit.** The prototype column of Table 4 and the r = 0 arm of
+- **Zero-radius limit.** The prototype column of Table 6 and the r = 0 arm of
   the radius-only control use the same head with every radius fixed at zero
   and the same class-mean centers (`--radius-scope fixed --fixed-radius 0
   --feature-stat-centers-only`), so they differ from UMLR²-S only in the
